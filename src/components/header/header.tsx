@@ -1,12 +1,14 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { InputsForms } from './types';
+import { InputsForms, HeaderProps } from './types';
 import { marvelPNG } from '@assets/img/index';
 import Input from '@components/input/input';
 
-const Header = ():React.ReactElement => {
+const Header = ({
+  submit,
+}:HeaderProps ):React.ReactElement => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<InputsForms>();
   const onSubmit: SubmitHandler<InputsForms> = data => {
-    console.log(data);
+    submit(data);
     reset();
   };
   return (

@@ -2,4 +2,8 @@ type InputsForms = {
   search: string,
 };
 
-export type { InputsForms };
+type HeaderProps = {
+  submit: (insert: InputsForms) => void;
+}
+
+export type { InputsForms, HeaderProps };

@@ -3,14 +3,19 @@ import { publicKey, hash } from '@utils/constants';
 import { publicRequest } from '@utils/public-request';
 import { ComicsAttr } from './types/types';
 
-const ACTIVITIES_ENPOINT = `/v1/public/comics?ts=1000&apikey=${publicKey}&hash=${hash}`;
+const ACTIVITIES_ENPOINT = `/v1/public/characters?apikey=${publicKey}&hash=${hash}&ts=1000`;
 const COMICS_KEY = "comics";
 
-const useComics = (): UseQueryResult<ComicsAttr> => {
+const useComics = (
+  search: string,
+  limit: number
+): UseQueryResult<ComicsAttr> => {
   const queryResult = useQuery(
-    COMICS_KEY,
+    [COMICS_KEY, search, limit],
     async () => {
-      const response = await publicRequest.get<ComicsAttr>(ACTIVITIES_ENPOINT);
+      let conditionalEnpoint = `${ACTIVITIES_ENPOINT}&limit=${limit}`;
+      if (search.length > 0) conditionalEnpoint = `${conditionalEnpoint}&nameStartsWith=${encodeURI(search)}`;
+      const response = await publicRequest.get<ComicsAttr>(conditionalEnpoint);
       return response.data;
     });
   return queryResult;
