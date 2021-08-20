@@ -1,6 +1,12 @@
+import Header from '@components/header/header';
+
 const App = ():React.ReactElement => {
   return (
-    <h1>hola mundo</h1>
+    <div
+      className="max-w-7xl mx-auto"
+    >
+      <Header />
+    </div>
   );
 }
 
