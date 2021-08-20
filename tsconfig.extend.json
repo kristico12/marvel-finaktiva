@@ -5,7 +5,9 @@
       "@assets/*": ["./assets/*"],
       "@routes/*": ["./routes/*"],
       "@views/*": ["./views/*"],
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@services/*": ["./services/*"],
+      "@utils/*": ["./utils/*"]
     }
   }
 }
