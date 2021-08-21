@@ -9,16 +9,17 @@ import Card from '@components/card/card';
 import { favouritesIcon } from '@assets/icons/index';
 import useViewport from '@hoocks/viewPort';
 import { useEffect } from 'react';
+import Pagination from '@components/pagination/pagination';
 
 const Main = ({
   Comics,
   onChangeOrder,
-  orderBy
+  filters
 }: MainProps): React.ReactElement => {
   const [expandSidebar, setExpandSideBar] = useState<boolean>(false);
   const { register, formState: { errors }, getValues } = useForm<IputsFromsMain>({
     defaultValues: {
-      orderBy,
+      orderBy: filters.orderBy,
     },
   });
   const onChange = () => {
@@ -97,6 +98,9 @@ const Main = ({
               </div>           
           : <h1>no hay datos</h1>
         }
+        <Pagination
+         
+        />
       </div>
       <div
         className='col-span-0 tablet:col-span-3'

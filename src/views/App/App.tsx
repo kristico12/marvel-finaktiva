@@ -12,9 +12,10 @@ const App = ():React.ReactElement => {
     search: '',
     limit: 10,
     orderBy: '',
+    offset: 0,
   })
   const { data, status } = useComics(
-    filters.search, filters.limit, filters.orderBy
+    filters.search, filters.limit, filters.orderBy, filters.offset,
   );
   const onSubmit = (insert: InputsForms) => {
     setFilters({...filters, search: insert.search });
@@ -38,7 +39,7 @@ const App = ():React.ReactElement => {
           <Main
             Comics={data}
             onChangeOrder={onChange}
-            orderBy={filters.orderBy}
+            filters={filters}
           />
       }
       {
