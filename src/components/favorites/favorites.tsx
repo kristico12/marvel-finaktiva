@@ -1,17 +1,22 @@
 import { favouritesIcon } from '@assets/icons/index';
 import { FavoritesProps } from './types';
+import useViewport from '@hoocks/viewPort';
 
 const Favorites = ({
   expandSidebar,
   setExpandSideBar,
 }: FavoritesProps): React.ReactElement => {
+  const { widthScreen } = useViewport();
+
   return (
-    <div className='flex flex-col w-full bg-gray-200 h-full transition-all duration-300 border-none z-10'>
+    <div className={`${expandSidebar && 'fixed right-0'} flex flex-col ${expandSidebar ? 'w-96' : 'w-full'} bg-gray-200 h-full transition-all duration-300 border-none z-10`}>
       <div className='overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow'>
         <ul className='flex flex-col py-4 space-y-1 justify-center items-center'>
           <li
-            className={`flex ${expandSidebar ? 'justify-evenly' : 'justify-center'} items-center gap-1 cursor-pointer`}
-            onClick={() => setExpandSideBar(!expandSidebar)}
+            className={`flex ${expandSidebar ? 'justify-evenly' : 'justify-center'} items-center gap-1 cursor-pointer tablet:cursor-auto tablet:dis`}
+            onClick={() => {
+              if (widthScreen < 640) setExpandSideBar(!expandSidebar)
+            }}
           >
             <picture
               className='w-6 h-6'

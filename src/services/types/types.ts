@@ -22,7 +22,7 @@ type ResultAttr = {
     type: string;
     url: string;
   }[];
-  commics: ComicSerieStorieAttr;
+  comics: ComicSerieStorieAttr;
   series: ComicSerieStorieAttr;
   stories: ComicSerieStorieAttr;
   events: ComicSerieStorieAttr;
@@ -32,7 +32,7 @@ type DataAttr = {
   limit: number;
   total: number;
   count: number;
-  results: ResultAttr;
+  results: ResultAttr[];
 };
 type ComicsAttr = {
   code: number;
@@ -44,4 +44,4 @@ type ComicsAttr = {
   data: DataAttr;
 };
 
-export type { ComicsAttr };
+export type { ComicsAttr, ResultAttr };

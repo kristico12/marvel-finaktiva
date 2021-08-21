@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { MainProps, IputsFromsMain } from './types';
-import Favorites from './components/favorites/favorites';
+import Favorites from '../favorites/favorites';
 import { charactersIcon } from '@assets/icons/index';
 import Select from '@components/select/select';
 import { orderComicsOptions } from '@utils/constants';
+import Card from '@components/card/card';
 
 const Main = ({
   Comics,
@@ -26,7 +27,7 @@ const Main = ({
       className="grid grid-cols-12 h-screen"
     >
       <div
-        className={`p-2 col-span-${expandSidebar ? '6' : '10'}`}
+        className='p-2 col-span-10 tablet:col-span-9'
       >
         <div
           className={`flex ${expandSidebar ? 'justify-center' : 'justify-between'} items-center gap-1`}
@@ -47,7 +48,7 @@ const Main = ({
           {
             !expandSidebar && (
               <form
-                className=''
+                className='tablet:w-60 laptop:w-64'
                 onChange={onChange}
               >
                 <Select
@@ -61,9 +62,21 @@ const Main = ({
             )
           }
         </div>
+        {
+          (Comics.data.total > 0) ?
+            <div
+              className='grid grid-cols-1 laptop:grid-cols-2'
+            >
+              <Card
+                item={Comics.data.results[0]}
+              />
+            </div>
+            
+          : <h1>no hay datos</h1>
+        }
       </div>
       <div
-        className={`col-span-${expandSidebar ? '6' : '2'}`}
+        className='col-span-2 tablet:col-span-3'
       >
         <Favorites
           expandSidebar={expandSidebar}

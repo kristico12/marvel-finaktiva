@@ -22,7 +22,6 @@ const App = ():React.ReactElement => {
   const onChange = (change: IputsFromsMain) => {
     setFilters({...filters, orderBy: change.orderBy })
   }
-  console.log(data);
   return (
     <div
       className="max-w-7xl mx-auto bg-gray-100"
