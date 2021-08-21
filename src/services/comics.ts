@@ -1,5 +1,5 @@
 import { UseQueryResult, useQuery } from 'react-query';
-import { publicKey, hash } from '@utils/constants';
+import { publicKey, hash } from '@utils/constantsEnv';
 import { publicRequest } from '@utils/public-request';
 import { ComicsAttr } from './types/types';
 
@@ -8,13 +8,15 @@ const COMICS_KEY = "comics";
 
 const useComics = (
   search: string,
-  limit: number
+  limit: number,
+  orderBy: 'name' | 'modified' | '' | '-name' | '-modified',
 ): UseQueryResult<ComicsAttr> => {
   const queryResult = useQuery(
-    [COMICS_KEY, search, limit],
+    [COMICS_KEY, search, limit, orderBy],
     async () => {
       let conditionalEnpoint = `${ACTIVITIES_ENPOINT}&limit=${limit}`;
       if (search.length > 0) conditionalEnpoint = `${conditionalEnpoint}&nameStartsWith=${encodeURI(search)}`;
+      if (orderBy.length > 0) conditionalEnpoint = `${conditionalEnpoint}&orderBy=${orderBy}`;
       const response = await publicRequest.get<ComicsAttr>(conditionalEnpoint);
       return response.data;
     });

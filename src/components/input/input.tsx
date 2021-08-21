@@ -1,7 +1,7 @@
 import useStyles from './styles';
 import { InputProps } from './types';
 import { ErrorMessage } from '@hookform/error-message';
-import { iconSearch } from '@assets/icons/index';
+import { searchIcon } from '@assets/icons/index';
 
 const Input = ({
   register,
@@ -28,7 +28,7 @@ const Input = ({
         type === "search" &&
         (
           <img
-            src={iconSearch}
+            src={searchIcon}
             alt=""
             className={styles.iconSearch}
           />

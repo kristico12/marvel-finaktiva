@@ -13,7 +13,7 @@ const Header = ({
   };
   return (
     <div
-      className='h-20 w-full bg-black flex items-center justify-evenly laptop:grid laptop:grid-cols-12 laptop:gap-x-10'
+      className='h-20 w-full bg-black flex items-center justify-evenly shadow laptop:grid laptop:grid-cols-12 laptop:gap-x-10'
     > 
       <picture
         className='max-h-full w-24 tablet:w-40 laptop:w-full laptop:col-span-3 laptop:flex laptop:justify-end laptop:items-center'

@@ -1,9 +1,10 @@
-const baseUrl = process.env.REACT_APP_API_BACKEND ?? '';
-const publicKey = process.env.REACT_APP_API_PUBLIC_KEY ?? '';
-const hash = process.env.REACT_APP_API_HASH ?? '';
+const orderComicsOptions = [
+  { value: 'name', label: 'Name' },
+  { value: 'modified', label: 'Modified' },
+  { value: '-name', label: 'Name Desc' },
+  { value: '-modified', label: 'Modified Desc' },
+]
 
 export {
-  baseUrl,
-  publicKey,
-  hash,
+  orderComicsOptions,
 }
