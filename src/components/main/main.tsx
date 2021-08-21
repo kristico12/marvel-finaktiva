@@ -6,6 +6,9 @@ import { charactersIcon } from '@assets/icons/index';
 import Select from '@components/select/select';
 import { orderComicsOptions } from '@utils/constants';
 import Card from '@components/card/card';
+import { favouritesIcon } from '@assets/icons/index';
+import useViewport from '@hoocks/viewPort';
+import { useEffect } from 'react';
 
 const Main = ({
   Comics,
@@ -21,19 +24,26 @@ const Main = ({
   const onChange = () => {
     onChangeOrder(getValues());
   };
+  const { widthScreen } = useViewport();
+
+  useEffect(() => {
+    if (widthScreen >= 640) {
+      setExpandSideBar(false);
+    }
+  }, [widthScreen])
 
   return (
     <div
       className="grid grid-cols-12 h-screen"
     >
       <div
-        className='p-2 col-span-10 tablet:col-span-9'
+        className='p-2 col-span-12 tablet:col-span-9'
       >
         <div
-          className={`flex ${expandSidebar ? 'justify-center' : 'justify-between'} items-center gap-1`}
+          className='flex justify-between items-center gap-x-1'
         >
           <div
-            className='flex justify-center items-center gap-1'
+            className='flex justify-center items-center gap-x-1'
           >
             <picture>
               <img
@@ -45,44 +55,69 @@ const Main = ({
               className='text-black font-bold'
             >Characters</span>
           </div>
+          <form
+            className='tablet:w-60 laptop:w-64'
+            onChange={onChange}
+          >
+            <Select
+              name='orderBy'
+              register={register}
+              showError={false}
+              errors={errors}
+              options={orderComicsOptions}
+            />
+          </form>
           {
-            !expandSidebar && (
-              <form
-                className='tablet:w-60 laptop:w-64'
-                onChange={onChange}
+            (widthScreen < 640) && (
+              <picture
+                className='w-6 h-6'
+                onClick={() => setExpandSideBar(!expandSidebar)}
               >
-                <Select
-                  name='orderBy'
-                  register={register}
-                  showError={false}
-                  errors={errors}
-                  options={orderComicsOptions}
+                <img
+                  src={favouritesIcon}
+                  alt='favoritesIcon'
                 />
-              </form>
+              </picture>
             )
           }
         </div>
         {
           (Comics.data.total > 0) ?
             <div
-              className='grid grid-cols-1 laptop:grid-cols-2'
+              className='grid grid-cols-1 gap-2 laptop:grid-cols-2 mt-4'
             >
-              <Card
-                item={Comics.data.results[0]}
-              />
-            </div>
-            
+              {
+                Comics?.data?.results?.map((com) => (
+                  <Card
+                    item={com}
+                    key={com.id}
+                  />
+                ))
+              }
+              </div>           
           : <h1>no hay datos</h1>
         }
       </div>
       <div
-        className='col-span-2 tablet:col-span-3'
+        className='col-span-0 tablet:col-span-3'
       >
-        <Favorites
-          expandSidebar={expandSidebar}
-          setExpandSideBar={setExpandSideBar}
-        />
+        {
+          (widthScreen >= 640) && (
+            <Favorites
+              expandSidebar={expandSidebar}
+              setExpandSideBar={setExpandSideBar}
+            />
+          )
+        }
       </div>
+      {
+        expandSidebar && (
+          <Favorites
+            expandSidebar={expandSidebar}
+            setExpandSideBar={setExpandSideBar}
+          />
+        )
+      }
     </div>
   );
 }

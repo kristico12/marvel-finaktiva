@@ -9,7 +9,7 @@ const Favorites = ({
   const { widthScreen } = useViewport();
 
   return (
-    <div className={`${expandSidebar && 'fixed right-0'} flex flex-col ${expandSidebar ? 'w-96' : 'w-full'} bg-gray-200 h-full transition-all duration-300 border-none z-10`}>
+    <div className={`${expandSidebar && 'fixed right-0 top-0'} flex flex-col w-3/4 bg-gray-200 h-full transition-all duration-300 border-none z-10 tablet:w-full`}>
       <div className='overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow'>
         <ul className='flex flex-col py-4 space-y-1 justify-center items-center'>
           <li
