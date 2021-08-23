@@ -19,7 +19,7 @@ const App = (): React.ReactElement => {
     filters.search, filters.limit, filters.orderBy, filters.offset,
   );
   const onSubmit = (insert: InputsForms) => {
-    setFilters({ ...filters, search: insert.search });
+    setFilters({ ...filters, search: insert.search, offset: 0 });
   }
   const onChange = (change: IputsFromsMain) => {
     setFilters({ ...filters, orderBy: change.orderBy })

@@ -70,6 +70,10 @@
     color: #000;
     outline: none;
   }
+  /* custom modal */
+  #containerModal {
+    max-height: 547px;
+  }
 }
 
 @tailwind components;

@@ -35,9 +35,6 @@ const Header = ({
             name: 'search'
           }}
           placeholder='Search character...'
-          rules={{
-            required: { message: '', value: true },
-          }}
           errors={errors}
         />
       </form>
