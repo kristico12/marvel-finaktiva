@@ -7,6 +7,7 @@ import { InputsForms } from '@components/header/types';
 import { IputsFromsMain } from '@components/main/types';
 import { useComics } from '@services/comics';
 import Pagination from '@components/pagination/pagination';
+import Footer from '@components/footer/footer';
 
 const App = (): React.ReactElement => {
   const [filters, setFilters] = useState<FiltersAttr>({
@@ -49,7 +50,7 @@ const App = (): React.ReactElement => {
               onChangePage={onChangePage}
             />
             <div
-              className='grid grid-cols-12'
+              className='grid grid-cols-12 pb-5'
             >
               <div
                 className='p-2 flex justify-center col-span-12 tablet:col-span-9'
@@ -75,6 +76,7 @@ const App = (): React.ReactElement => {
         status === 'error' &&
         <h1>Ha ocurrido un error</h1>
       }
+      <Footer />
     </div>
   );
 }
