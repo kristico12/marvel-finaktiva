@@ -8,7 +8,8 @@
       "@components/*": ["./components/*"],
       "@services/*": ["./services/*"],
       "@utils/*": ["./utils/*"],
-      "@hoocks/*": ["./hoocks/*"]
+      "@hoocks/*": ["./hoocks/*"],
+      "@context/*": ["./context/*"]
     }
   }
 }

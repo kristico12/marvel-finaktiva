@@ -1,15 +1,14 @@
+import { useContext } from 'react';
 import { shoppingCartPrimaryIcon, favoriteAddedIcon, favoriteAddIcon, btnCloseIcon } from '@assets/icons/index';
 import { ModalFavoritesProps } from "./types";
-import useLocalStorage from '@hoocks/localStorage';
-import { ResultAttr } from '@services/types/types';
+import { FavoritesContext } from '@context/favorites';
 
 const ModalFavorites = ({
   onClose,
   info
 }: ModalFavoritesProps): React.ReactElement => {
-  const initialDataLocalStorage: ResultAttr[] = [];
-  const { storedValue: listFavorites, setValue: setListFavorites } = useLocalStorage('comics-favorites', initialDataLocalStorage);
-  const isExistListFavorites = listFavorites.find((fav) => fav.id === info.id);
+  const { favoritesList, updateFavorites } = useContext(FavoritesContext);
+  const isExistListFavorites = favoritesList.find((fav) => fav.id === info.id);
   return (
     <div className='fixed z-10 inset-0' aria-labelledby='modal-title' role='dialog' aria-modal='true'>
       <div className='flex items-center justify-center min-h-screen'>
@@ -66,7 +65,7 @@ const ModalFavorites = ({
                 ${isExistListFavorites ? 'bg-black' : 'bg-gray-200'}
                 ${!isExistListFavorites && 'hover:opacity-80'}`
               }
-              onClick={() => {if (!isExistListFavorites) setListFavorites([...listFavorites, info])}}
+              onClick={() => updateFavorites([...favoritesList, info])}
               disabled={isExistListFavorites ? true : false}
             >
               <picture>

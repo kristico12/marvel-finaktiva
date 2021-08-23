@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, createRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { MainProps, IputsFromsMain } from './types';
 import Favorites from '../favorites/favorites';
@@ -8,7 +8,7 @@ import { orderComicsOptions } from '@utils/constants';
 import Card from '@components/card/card';
 import { favouritesIcon } from '@assets/icons/index';
 import useViewport from '@hoocks/viewPort';
-import { useEffect } from 'react';
+import useOnClickOutside from '@hoocks/onClickOutside';
 
 const Main = ({
   Comics,
@@ -23,6 +23,11 @@ const Main = ({
       orderBy: filters.orderBy,
     },
   });
+  const refFavoritesElement = createRef<HTMLDivElement>();
+  
+  const handleClickOutside = () => {
+    if (expandSidebar) setExpandSideBar(false);
+  }
   const onChange = () => {
     onChangeOrder(getValues());
   };
@@ -31,8 +36,9 @@ const Main = ({
     if (widthScreen >= 640) {
       setExpandSideBar(false);
     }
-  }, [widthScreen])
+  }, [widthScreen]);
 
+  useOnClickOutside(refFavoritesElement, handleClickOutside);
   return (
     <div
       className="grid grid-cols-12"
@@ -116,6 +122,7 @@ const Main = ({
           <Favorites
             expandSidebar={expandSidebar}
             setExpandSideBar={setExpandSideBar}
+            ref={refFavoritesElement}
           />
         )
       }
