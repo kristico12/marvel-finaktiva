@@ -6,10 +6,9 @@ import Input from '@components/input/input';
 const Header = ({
   submit,
 }:HeaderProps ):React.ReactElement => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<InputsForms>();
+  const { register, handleSubmit, formState: { errors } } = useForm<InputsForms>();
   const onSubmit: SubmitHandler<InputsForms> = data => {
     submit(data);
-    reset();
   };
   return (
     <div

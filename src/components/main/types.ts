@@ -4,6 +4,7 @@ import { FiltersAttr } from '@views/App/types';
 type MainProps = {
   Comics: ComicsAttr;
   onChangeOrder: (change: InputsForms) => void;
+  onChangePage: (selectedItem: { selected: number; }) => void;
   filters: FiltersAttr;
 };
 type InputsForms = {

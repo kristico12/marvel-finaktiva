@@ -9,13 +9,14 @@ import Card from '@components/card/card';
 import { favouritesIcon } from '@assets/icons/index';
 import useViewport from '@hoocks/viewPort';
 import { useEffect } from 'react';
-import Pagination from '@components/pagination/pagination';
 
 const Main = ({
   Comics,
   onChangeOrder,
+  onChangePage,
   filters
 }: MainProps): React.ReactElement => {
+  const { widthScreen } = useViewport();
   const [expandSidebar, setExpandSideBar] = useState<boolean>(false);
   const { register, formState: { errors }, getValues } = useForm<IputsFromsMain>({
     defaultValues: {
@@ -25,7 +26,6 @@ const Main = ({
   const onChange = () => {
     onChangeOrder(getValues());
   };
-  const { widthScreen } = useViewport();
 
   useEffect(() => {
     if (widthScreen >= 640) {
@@ -35,7 +35,7 @@ const Main = ({
 
   return (
     <div
-      className="grid grid-cols-12 h-screen"
+      className="grid grid-cols-12"
     >
       <div
         className='p-2 col-span-12 tablet:col-span-9'
@@ -95,12 +95,9 @@ const Main = ({
                   />
                 ))
               }
-              </div>           
-          : <h1>no hay datos</h1>
+            </div>
+            : <h1>no hay datos</h1>
         }
-        <Pagination
-         
-        />
       </div>
       <div
         className='col-span-0 tablet:col-span-3'
