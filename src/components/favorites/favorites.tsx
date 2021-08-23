@@ -20,7 +20,7 @@ const Favorites = forwardRef<HTMLElement, FavoritesProps>((props: FavoritesProps
       }
       ref={ref as MutableRefObject<HTMLDivElement>}
     >
-      <div className='overflow-x-hidden flex flex-col justify-between'>
+      <div className='overflow-x-hidden overflow-y-auto flex flex-col justify-between'>
         <div
           className='flex justify-center mt-2 items-center gap-x-1 cursor-pointer tablet:cursor-auto'
           onClick={() => {
@@ -39,7 +39,7 @@ const Favorites = forwardRef<HTMLElement, FavoritesProps>((props: FavoritesProps
             className='text-black font-bold text-2xl tablet:text-lg'
           >My favourites</span>
         </div>
-        <ul className='flex flex-col justify-center items-center gap-y-6 overflow-y-auto mt-6 pt-5'>
+        <ul className='flex flex-col justify-center items-center gap-y-6 mt-6 mb-5'>
           {
             favoritesList.map((item) => (
               <li
