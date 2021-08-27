@@ -21,7 +21,8 @@ const useComics = (
       conditionalEnpoint = `${conditionalEnpoint}&offset=${offset}`;
       const response = await publicRequest.get<ComicsAttr>(conditionalEnpoint);
       return response.data;
-    });
+    },
+  );
   return queryResult;
 };
 

@@ -1,5 +1,6 @@
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools';
 import FavoritesProvider from "@context/favorites";
 // views
 import App from '../views/App/App';
@@ -16,6 +17,7 @@ export const Routes = (): React.ReactElement => (
         <FavoritesProvider>
           <QueryClientProvider client={queryClient}>
             <App />
+            <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
         </FavoritesProvider>
       </Route>

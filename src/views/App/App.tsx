@@ -17,7 +17,7 @@ const App = (): React.ReactElement => {
     offset: 0,
   })
   const { data, status } = useComics(
-    filters.search, filters.limit, filters.orderBy, filters.offset,
+    filters.search, filters.limit, filters.orderBy, filters.offset
   );
   const onSubmit = (insert: InputsForms) => {
     setFilters({ ...filters, search: insert.search, offset: 0 });
