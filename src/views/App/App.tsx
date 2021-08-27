@@ -15,7 +15,7 @@ const App = (): React.ReactElement => {
     limit: 10,
     orderBy: '',
     offset: 0,
-  })
+  });
   const { data, status } = useComics(
     filters.search, filters.limit, filters.orderBy, filters.offset
   );

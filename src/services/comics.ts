@@ -1,4 +1,4 @@
-import { UseQueryResult, useQuery } from 'react-query';
+import { UseQueryResult, useQuery, UseQueryOptions } from 'react-query';
 import { publicKey, hash } from '@utils/constantsEnv';
 import { publicRequest } from '@utils/public-request';
 import { ComicsAttr } from './types/types';
@@ -11,6 +11,7 @@ const useComics = (
   limit: number,
   orderBy: 'name' | 'modified' | '' | '-name' | '-modified',
   offset: number,
+  options?: UseQueryOptions<ComicsAttr>,
 ): UseQueryResult<ComicsAttr> => {
   const queryResult = useQuery(
     [COMICS_KEY, search, limit, orderBy, offset],
@@ -22,6 +23,7 @@ const useComics = (
       const response = await publicRequest.get<ComicsAttr>(conditionalEnpoint);
       return response.data;
     },
+    options
   );
   return queryResult;
 };
